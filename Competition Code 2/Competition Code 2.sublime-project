@@ -1,0 +1,35 @@
+{
+	"folders":
+	[
+		{
+			"path":"include",
+			"name":"Include Files"
+		},
+		{
+			"path":"src",
+			"name":"Source Files",
+			"file_exclude_patterns":[
+             	"Makefile"
+          	]
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name":"PROS",
+			"working_dir":"${project_path}",
+			"cmd":["make"],
+            "variants":[
+                { "cmd":["make", "clean"],
+			      "name":"Clean"
+                },
+                { "cmd":["make", "upload"],
+                  "name":"Upload"
+                },
+				{ "cmd":["make", "upload"],
+                  "name":"Run"
+                }
+            ]
+        }
+	]
+}

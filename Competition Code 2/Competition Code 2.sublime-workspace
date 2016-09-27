@@ -1,0 +1,651 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"data",
+				"dataType"
+			],
+			[
+				"Dat",
+				"dataType"
+			],
+			[
+				"init",
+				"initLcdPresets"
+			],
+			[
+				"mot",
+				"motTest"
+			],
+			[
+				"startMo",
+				"startMotorTest"
+			],
+			[
+				"star",
+				"startAuton"
+			],
+			[
+				"curr",
+				"currentPage_sec"
+			],
+			[
+				"au",
+				"autIndex"
+			],
+			[
+				"aut",
+				"AutonMode"
+			],
+			[
+				"Auton",
+				"AutonMode"
+			],
+			[
+				"LC",
+				"LCD_BTN_LEFT"
+			],
+			[
+				"startAuton",
+				"startAutonSel"
+			],
+			[
+				"L",
+				"LCD_BTN_CENTER"
+			],
+			[
+				"LCD_BT",
+				"LCD_BTN_CENTER"
+			],
+			[
+				"input",
+				"input_sec"
+			],
+			[
+				"currentPage",
+				"currentPage_sec"
+			],
+			[
+				"teh",
+				"thetaTemp"
+			],
+			[
+				"theta",
+				"thetaAddition"
+			],
+			[
+				"the",
+				"thetaTemp"
+			],
+			[
+				"int",
+				"INPUT_THRESHOLD"
+			],
+			[
+				"FPS",
+				"FPSBase"
+			],
+			[
+				"FP",
+				"FPSBase"
+			],
+			[
+				"gyro",
+				"gyroscope"
+			],
+			[
+				"TAK",
+				"TASK_DEFAULT_STACK_SIZE"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "/** \n * @file auto.c\n * @brief File for autonomous code\n */\n\n#include \"main.h\"\n#include \"autonomous_utility_methods.h\"\n\n//\n#include <string.h>\n//\n\nunsigned int autonMode;\n\nUltrasonic ultrasonicRotorLeft;\nUltrasonic ultrasonicRotorRight;\n\nvoid autonomous()\n{\n\n	if (autonMode == 0) {\n		handleShooterUpdating(0, 0, 0, 0, 0, 0, 1);\n\n		delay(2 * 1000);\n\n		while(true) {\n\n			setIntake(60, 60);\n		}\n\n	}\n	else if (autonMode == 1) {\n		Base old = (Base){0, 0, (Correction){0, 0}, 0};\n\n		handleShooterUpdating(0, 0, 0, 0, 0, 0, 1);\n\n		delay(33 * 1000);\n\n		delay(100 * 1000);\n\n		shooterStop();\n\n		old = turnRight(old, 120, 45);\n\n		delay(1500);\n\n		old = moveForward(old, 120, 3);\n\n		delay(1500);\n\n		old = turnLeft(old, 120, 105);\n\n		handleShooterUpdating(0, 0, 0, 0, 0, 0, 1);\n		}\n	else {//1 min autonomous\n\n		//SETUP\n		Base old = (Base){0, 0, (Correction){0, 0}, 0};\n		unsigned long t0 = millis();\n		unsigned long t = t0;\n\n		t = t0 = millis();\n		while (t < t0 + 1000) {\n			handleShooterUpdating(0, 0, 0, 0, 0, 0, 0);\n			t = millis();\n		}\n\n		old = turnRight(old, 120, 90);\n\n		int wallDis0 = ultrasonicGet(ultrasonicRotorRight);\n\n		old = moveForward(old, 120, 1.0f);\n\n		int wallDis = ultrasonicGet(ultrasonicRotorRight);\n\n		old = turnLeft(old, 120, 90);\n\n		float temp = (float)(wallDis - wallDis0) * TO_INCHES;\n		temp = 0;\n		if(abs(temp) > 1.0f) {\n			if(temp < 0)\n				old = moveForward(old, 120, (-temp) / TILE_LENGTH);\n			else\n				old = moveBackward(old, 120, temp / TILE_LENGTH);\n		}\n\n		while(true)\n			handleShooterUpdating(0, 0, 0, 127, 0, 0, 0);\n	}\n}",
+			"file": "src/auto.c",
+			"file_size": 8971,
+			"file_write_time": 131032285429587981,
+			"settings":
+			{
+				"buffer_size": 1540,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/lcd.c",
+			"settings":
+			{
+				"buffer_size": 35950,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "PROS",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"PROS",
+					""
+				],
+				[
+					"PROS",
+					"Clean"
+				],
+				[
+					"PROS",
+					"Upload"
+				],
+				[
+					"PROS",
+					"Run"
+				]
+			],
+			[
+				"PROS",
+				"Clean"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Build With: PROS"
+			],
+			[
+				"pros",
+				"Build With: PROS"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"clean",
+				"Build With: PROS - Clean"
+			],
+			[
+				"upl",
+				"Build With: PROS - Upload"
+			],
+			[
+				"packages",
+				"Package Control: List Packages"
+			],
+			[
+				"make",
+				"Set Syntax: Makefile"
+			],
+			[
+				"upload",
+				"Build With: PROS - Upload"
+			],
+			[
+				"pros clean",
+				"Build With: PROS - Clean"
+			],
+			[
+				"todo",
+				"TodoReview: Project and Open Files"
+			],
+			[
+				"package rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"task",
+				"Tasks: New document"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pac inst",
+				"Package Control: Install Package"
+			],
+			[
+				"package remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"uplaod",
+				"Build With: PROS - Upload"
+			],
+			[
+				"make clean",
+				"Build With: Make - Clean"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"comme",
+				"Toggle Comment"
+			],
+			[
+				"Make",
+				"Build With: Make"
+			],
+			[
+				"Make Clean",
+				"Build With: Make - Clean"
+			],
+			[
+				"Make - Clean",
+				"Build With: Make - Clean"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"pros",
+			"make",
+			"make upload",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"Make Upload",
+			"Make",
+			"make"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src"
+	],
+	"file_history":
+	[
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/utility_methods.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include/global_variable_initialization.h",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include/lcd.h",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/opcontrol.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/lcd.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include/relative_and_global_angle.h",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/lcd_new.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/init.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include/main.h",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/auto.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/relative_and_global_angle.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/include/FPS.h",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/base.c",
+		"/C/Users/Suthikshnan Karthik/Documents/Competition Code 2/src/FPS.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime 2/Competition Code 2/include/relative_and_global_angle.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime 2/Competition Code 2/include/global_variable_initialization.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime 2/Competition Code 2/src/rotor.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime 2/Competition Code 2/include/base.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/init.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/opcontrol.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/include/API.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/lcd.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/relative_and_global_angle.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/base.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/FPS.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/include/global_variable_initialization.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/include/relative_and_global_angle.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/rotor.c",
+		"/C/Users/Akramjit/AppData/Roaming/Sublime Text 3/Packages/Arduino-like IDE/app/serial_monitor.py",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/include/base.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/auto.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/intake.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/autonomous_controller.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/src/shooter.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/PROSe IDE/Competition Code 2/include/Competition Code 2.sublime-project",
+		"/C/Users/Akramjit/AppData/Roaming/Sublime Text 3/Packages/User/arduino-cli.sublime-settings",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/src/opcontrol.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/src/FPS.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/Makefile",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/src/autonomous_utility_methods.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/src/lcd.c",
+		"/C/Users/Akramjit/AppData/Roaming/Sublime Text 3/Packages/User/Vex.sublime-build",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/Competition Code 2/include/FPS.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/include/API.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/src/init.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/Makefile",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/include/main.h",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/src/auto.c",
+		"/C/Users/Akramjit/Desktop/USB/Robotics/2015 - 2016/PROSe/Sublime/CCII/CCII.sublime-project"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"sensor",
+			"follower",
+			"tracker",
+			"line",
+			"MAX SPEED",
+			"handleLcdUpdate",
+			"currentPage",
+			"startMotor",
+			"currentPage",
+			"LCD_BTN",
+			"Base",
+			"FPSBase",
+			"gyroOffset",
+			"getLocal",
+			"getGlobalAngle",
+			"baseAngle",
+			"FPSbase",
+			"Gyroscope",
+			"gyroscope",
+			"uart1",
+			"autonomous_controller",
+			"printf"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"uart2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/auto.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1540,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8,
+								8
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 271.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/lcd.c",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 35950,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1675,
+								1675
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 24665.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 25.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.src":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "Competition Code 2.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"op",
+				"Source Files\\opcontrol.c"
+			],
+			[
+				"fps",
+				"Include Files\\FPS.h"
+			],
+			[
+				"glo",
+				"Include Files\\global_variable_initialization.h"
+			],
+			[
+				"rel",
+				"Source Files\\relative_and_global_angle.c"
+			],
+			[
+				"ang",
+				"Include Files\\relative_and_global_angle.h"
+			],
+			[
+				"lo",
+				"Include Files\\global_variable_initialization.h"
+			],
+			[
+				"rotor",
+				"Source Files\\rotor.c"
+			],
+			[
+				"base",
+				"Source Files\\base.c"
+			],
+			[
+				"base.h",
+				"Include Files\\base.h"
+			],
+			[
+				"llo",
+				"Include Files\\relative_and_global_angle.h"
+			],
+			[
+				"lcd",
+				"Source Files\\lcd.c"
+			],
+			[
+				"lcd.c",
+				"Source Files\\lcd.c"
+			],
+			[
+				"api",
+				"Include Files\\API.h"
+			],
+			[
+				"init",
+				"Source Files\\init.c"
+			],
+			[
+				"globa",
+				"Include Files\\global_variable_initialization.h"
+			],
+			[
+				"intake",
+				"Source Files\\intake.c"
+			],
+			[
+				"base.c",
+				"Source Files\\base.c"
+			],
+			[
+				"shooter.c",
+				"Source Files\\shooter.c"
+			],
+			[
+				"shot.c",
+				"Source Files\\shooter.c"
+			],
+			[
+				"",
+				"src\\base.c"
+			],
+			[
+				"go",
+				"include\\global_variable_initialization.h"
+			],
+			[
+				"make",
+				"Makefile"
+			],
+			[
+				"opcon",
+				"src\\opcontrol.c"
+			],
+			[
+				"opcont",
+				"src\\opcontrol.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 146.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
