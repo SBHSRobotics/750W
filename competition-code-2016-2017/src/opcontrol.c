@@ -101,10 +101,10 @@
 	bool sch8u; // Right Keypad Top Button
 	bool sch8d; // Right Keypad Bottom Button
 	bool sch8l; // Right Keypad Left Button
-	bool sch8r; // Right Keypad Right Button 
+	bool sch8r; // Right Keypad Right Button
 
 void operatorControl() {
-		
+
 	while (1) {
 		/*
 		 * ================= Primary Remote =================
@@ -130,7 +130,7 @@ void operatorControl() {
 		ch8d = joystickGetDigital( 1 , 8 , JOY_DOWN );  // Right Keypad Bottom Button
 		ch8l = joystickGetDigital( 1 , 8 , JOY_LEFT );  // Right Keypad Left Button
 		ch8r = joystickGetDigital( 1 , 8 , JOY_RIGHT );  // Right Keypad Right Button
-		
+
 		/*
 		 * ================= Secondary Remote =================
 		 */
@@ -150,11 +150,17 @@ void operatorControl() {
 		sch7d = joystickGetDigital( 2 , 7 , JOY_DOWN ); // Left Keypad Bottom Button
 		sch7l = joystickGetDigital( 2 , 7 , JOY_LEFT ); // Left Keypad Left Button
 		sch7r = joystickGetDigital( 2 , 7 , JOY_RIGHT ); // Left Keypad Right Button
-		
+
 		sch8u = joystickGetDigital( 2 , 8 , JOY_UP ); // Right Keypad Top Button
 		sch8d = joystickGetDigital( 2 , 8 , JOY_DOWN ); // Right Keypad Bottom Button
 		sch8l = joystickGetDigital( 2 , 8 , JOY_LEFT ); // Right Keypad Left Button
-		sch8r = joystickGetDigital( 2 , 8 , JOY_RIGHT ); // Right Keypad Right Button 
+		sch8r = joystickGetDigital( 2 , 8 , JOY_RIGHT ); // Right Keypad Right Button
+
+		/*
+		 *	Location ~ Movement
+		 */
+
+			
 
 		delay(20);
 	}
