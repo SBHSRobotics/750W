@@ -7,13 +7,13 @@
 #include "API.h"
 
 /**
- *	Object Definitions 
+ *	Object Definitions
  */
 
-/** 
+/**
  *	@enum Direction
- *  @brief angle bot is facing 
- *	
+ *  @brief angle bot is facing
+ *
  *	Describes the Direction the bot is facing relative to the field.
  */
 typedef struct Direction
@@ -88,7 +88,7 @@ typedef struct Base
 /**
  * @struct Location
  * @brief Coordinates of the Bot
- * 
+ *
  * Describes the exact location of the bot and its position relative to the field
  */
 typedef struct Location

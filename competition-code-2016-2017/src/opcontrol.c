@@ -160,7 +160,7 @@ void operatorControl() {
 		 *	Location ~ Movement
 		 */
 
-			
+		baseQuad(ch3,ch4);
 
 		delay(20);
 	}
