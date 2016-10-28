@@ -227,55 +227,6 @@ Base baseSetQuad(Base old, int chS, int chP,
 		}
 	}
 
-	/*if ((ch5U ^ ch6U) ^ (ch5D ^ ch6D))
-	{
-		diag = false;
-		now.axis = axisTurn;
-		if (ch5U ^ ch6U)
-		{
-			if (ch5U)
-			{
-				now.left = -turnSpeed;
-				now.right = turnSpeed;
-			}
-			else
-			{
-				now.left = turnSpeed;
-				now.right = -turnSpeed;
-			}
-		}
-		else
-		{
-			if (ch5D)
-			{
-				now.left = -halfTurnSpeed;
-				now.right = halfTurnSpeed;
-			}
-			else
-			{
-				now.left = halfTurnSpeed;
-				now.right = -halfTurnSpeed;
-			}
-		}
-	}*/
-	/*
-	if (ch5 ^ ch6)
-	{
-		diag = false;
-		now.axis = axisTurn;
-		if (ch5)
-		{
-			//("left\n\r");
-			now.left = -turnSpeed;
-			now.right = turnSpeed;
-		}
-		else
-		{
-			//("right\n\r");
-			now.left = turnSpeed;
-			now.right = -turnSpeed;
-		}
-	}*/
 	else if ((abs(chS) > INPUT_THRESHOLD) || (abs(chP) > INPUT_THRESHOLD))
 	{
 		if ((abs(chS) > INPUT_THRESHOLD) ^ (abs(chP) > INPUT_THRESHOLD))

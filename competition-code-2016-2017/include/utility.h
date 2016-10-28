@@ -2,7 +2,7 @@
 
 /**
  * @file utility.h
- * 
+ *
  * @brief Initializes all Utility Methods
  */
 

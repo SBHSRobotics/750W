@@ -15,9 +15,9 @@
 
 // Includes
 #include "API.h"
-#include "utility.h"
-#include "global_vars.h"
-#include "angle.h"
+#include "utility_methods.h"
+#include "global_variable_initialization.h"
+#include "relative_and_global_angle.h"
 #include <math.h>
 
 /**
