@@ -32,8 +32,9 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
-#include "main.h"
-#include "controller.h"
+ #include "main.h"
+ #include "base.h"
+ #include "global_vars.h"
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -103,6 +104,12 @@
 	bool sch8l; // Right Keypad Left Button
 	bool sch8r; // Right Keypad Right Button
 
+/*
+ *	================= Primary Remote =================
+ */
+
+Base RobotBase;
+
 void operatorControl() {
 
 	while (1) {
@@ -160,8 +167,8 @@ void operatorControl() {
 		 *	Location ~ Movement
 		 */
 
-		baseQuad(ch3,ch4);
-
-		delay(20);
+		RobotBase = baseSetQuad(RobotBase, ch4, ch3, ch5u, false, ch6u, false, 80);
+		 
+		delay(TIME_DELAY);
 	}
 }
