@@ -1,0 +1,15 @@
+#Ignore the bin folder that contains VEX Cortex binary files
+bin/
+
+#Ignore .sublime-workspace files (these are user-specific depending on what they have open)
+*.sublime-workspace
+
+#Ignore Eclipse project metadata
+.project
+
+#Ignore PROS project metadata and binary files
+.metadata/
+**/.metadata
+*.o
+*.bin
+*.elf
